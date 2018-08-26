@@ -1,2 +1,4 @@
 
 539 - "Now we hit our base case and and hit our base case"
+661 - "nope" should be "There"
+689 - ereader missing rest of the text
