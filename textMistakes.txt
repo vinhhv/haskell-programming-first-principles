@@ -5,3 +5,6 @@
 756 - random "indexmain@main" added to end of paragraph
 776 - random "indexmain@main" added
 779 - random "indexmain@main" added
+824 - "REEEEEEEPL" too many 'E's
+842 - "helpfully" should be "hopefully", "pick ())" should be "pick ()"
+854 - No morseToString implementation

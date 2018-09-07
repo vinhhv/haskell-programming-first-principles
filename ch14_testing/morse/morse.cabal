@@ -1,50 +1,41 @@
-name:                hangman
+name:                morse
 version:             0.1.0.0
-synopsis:            Playing Hangman
-description:         Classic Hangman Game
-homepage:            https://github.com/vinhhv/haskell_first_principles/ch13_modules/hangman#readme
+homepage:            https://github.com/githubuser/morse#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Vinh Vu
-maintainer:          https://github.com/vinhhv
+maintainer:          example@example.com
 copyright:           2018 Vinh Vu
-category:            Game
+category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
-extra-source-files:  data/dict.txt
 
 library
-  exposed-modules:     Hangman
+  exposed-modules:     Morse, WordNumber
   ghc-options:         -fwarn-tabs
   build-depends:       base >= 4.7 && < 5,
                        containers,
-                       random,
-                       split,
                        QuickCheck
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable hangman
+executable morse
   hs-source-dirs:      src
   ghc-options:         -fwarn-tabs
   main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5,
                        containers,
-                       hangman,
-                       random,
-                       split,
-                       hspec,
+                       morse,
                        QuickCheck
 
-test-suite HangmanTests
+test-suite tests
   ghc-options:         -fno-warn-orphans
   type:                exitcode-stdio-1.0
   main-is:             tests.hs
   hs-source-dirs:      tests
   build-depends:       base,
                        containers,
-                       hangman,
-                       hspec,
+                       morse,
                        QuickCheck
   default-language:    Haskell2010
