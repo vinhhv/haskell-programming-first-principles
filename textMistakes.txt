@@ -8,3 +8,4 @@
 824 - "REEEEEEEPL" too many 'E's
 842 - "helpfully" should be "hopefully", "pick ())" should be "pick ()"
 854 - No morseToString implementation
+921 - Compiling Haskell files containing Monoids but without Semigroups fail
