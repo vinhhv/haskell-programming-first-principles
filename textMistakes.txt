@@ -9,3 +9,4 @@
 842 - "helpfully" should be "hopefully", "pick ())" should be "pick ()"
 854 - No morseToString implementation
 921 - Compiling Haskell files containing Monoids but without Semigroups fail
+950 - Monoid exercises, let blocks with values set to functions don't work (needs more explanation)
