@@ -11,3 +11,4 @@
 921 - Compiling Haskell files containing Monoids but without Semigroups fail
 950 - Monoid exercises, let blocks with values set to functions don't work (needs more explanation)
 1043 - "Bloor" should be "Floor"
+1130 - "E xplaining" should be "Explain"
