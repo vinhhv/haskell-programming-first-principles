@@ -157,7 +157,63 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Pair a b) where
 instance (Eq a, Eq b) => EqProp (Pair a b) where
   (=-=) = eq
 
+----------------------------------------
 
+data Big a b = Big a b b deriving (Eq, Ord, Show)
+
+instance Functor (Big a) where
+  fmap f (Big a b b') = Big a (f b) (f b')
+
+instance Foldable (Big a) where
+  foldMap f (Big a b b') = (f b) <> (f b')
+
+instance Traversable (Big a) where
+  traverse f (Big a b b') = Big a <$> f b <*> f b'
+
+genBig :: (Arbitrary a, Arbitrary b) => Gen (Big a b)
+genBig = do
+  a <- arbitrary
+  b <- arbitrary
+  return (Big a b b)
+
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Big a b) where
+  arbitrary = genBig
+
+instance (Eq a, Eq b) => EqProp (Big a b) where
+  (=-=) = eq
+
+----------------------------------------
+
+data Bigger a b = Bigger a b b b deriving (Eq, Ord, Show)
+
+instance Functor (Bigger a) where
+  fmap f (Bigger a b b' b'') = Bigger a (f b) (f b') (f b'')
+
+instance Foldable (Bigger a) where
+  foldMap f (Bigger a b b' b'') = (f b) <> (f b') <> (f b'')
+
+instance Traversable (Bigger a) where
+  traverse f (Bigger a b b' b'') = Bigger a <$> f b <*> f b' <*> f b''
+
+genBigger :: (Arbitrary a, Arbitrary b) => Gen (Bigger a b)
+genBigger = do
+  a <- arbitrary
+  b <- arbitrary
+  return (Bigger a b b b)
+
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Bigger a b) where
+  arbitrary = genBigger
+
+instance (Eq a, Eq b) => EqProp (Bigger a b) where
+  (=-=) = eq
+
+----------------------------------------
+-- See SkiFree.hs
+----------------------------------------
+
+----------------------------------------
+-- See Tree.hs
+----------------------------------------
 
 main :: IO ()
 main = do
@@ -173,6 +229,10 @@ main = do
       triggerT = undefined
   let triggerP :: Pair (Int, Int, [Int]) (Int, Int, [Int])
       triggerP = undefined
+  let triggerB :: Big (Int, Int, [Int]) (Int, Int, [Int])
+      triggerB = undefined
+  let triggerBg :: Bigger (Int, Int, [Int]) (Int, Int, [Int])
+      triggerBg = undefined
   quickBatch (functor triggerI)
   quickBatch (traversable triggerI)
   quickBatch (functor triggerC)
@@ -185,3 +245,7 @@ main = do
   quickBatch (traversable triggerT)
   quickBatch (functor triggerP)
   quickBatch (traversable triggerP)
+  quickBatch (functor triggerB)
+  quickBatch (traversable triggerB)
+  quickBatch (functor triggerBg)
+  quickBatch (traversable triggerBg)
