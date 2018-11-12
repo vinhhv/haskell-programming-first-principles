@@ -20,3 +20,11 @@ executable learn
   build-depends:       base >= 4.7 && < 5,
                        parsers,
                        trifecta
+
+executable fractions
+  hs-source-dirs:      src
+  main-is:             Fractions.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5,
+                       parsers,
+                       trifecta
