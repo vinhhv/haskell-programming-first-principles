@@ -12,19 +12,19 @@ class Bifunctor p where
   second :: (b -> c) -> p a b -> p a c
   second = bimap id
 
-data Deux a b = Deux a b
+data Deux a b = Deux a b deriving (Eq, Show)
 
-data Const a b = Const a
+data Const a b = Const a deriving (Eq, Show)
 
-data Drei a b c = Drei a b c
+data Drei a b c = Drei a b c deriving (Eq, Show)
 
-data SuperDrei a b c = SuperDrei a b
+data SuperDrei a b c = SuperDrei a b deriving (Eq, Show)
 
-data SemiDrei a b c = SemiDrei a
+data SemiDrei a b c = SemiDrei a deriving (Eq, Show)
 
-data Quadriceps a b c d = Quadzzz a b c d
+data Quadriceps a b c d = Quadzzz a b c d deriving (Eq, Show)
 
-data Either' a b = Left' a | Right' b
+data Either' a b = Left' a | Right' b deriving (Eq, Show)
 
 instance Bifunctor Deux where
   bimap f g (Deux a b) = Deux (f a) $ g b
