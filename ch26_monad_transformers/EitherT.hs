@@ -2,6 +2,9 @@
 
 module EitherT where
 
+import Control.Monad
+import Control.Monad.Trans.Class
+
 newtype EitherT e m a = EitherT { runEitherT :: m (Either e a) }
 
 instance Functor m => Functor (EitherT e m) where
@@ -19,6 +22,9 @@ instance Monad m => Monad (EitherT e m) where
       case e of
         Left l -> return $ Left l 
         Right r -> runEitherT (f r)
+
+instance MonadTrans (EitherT e) where
+  lift = EitherT . liftM Right
 
 swapEither :: Either e a -> Either a e
 swapEither (Right r) = Left r
