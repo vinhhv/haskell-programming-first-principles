@@ -3,6 +3,7 @@
 module EitherT where
 
 import Control.Monad
+import Control.Monad.IO.Class
 import Control.Monad.Trans.Class
 
 newtype EitherT e m a = EitherT { runEitherT :: m (Either e a) }
@@ -25,6 +26,9 @@ instance Monad m => Monad (EitherT e m) where
 
 instance MonadTrans (EitherT e) where
   lift = EitherT . liftM Right
+
+instance MonadIO m => MonadIO (EitherT e m) where
+  liftIO = lift . liftIO
 
 swapEither :: Either e a -> Either a e
 swapEither (Right r) = Left r

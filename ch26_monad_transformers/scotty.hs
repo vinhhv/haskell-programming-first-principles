@@ -6,6 +6,7 @@ import Web.Scotty
 import Web.Scotty.Internal.Types (ActionT(..))
 
 import Control.Monad
+import Control.Monad.IO.Class
 import Control.Monad.Trans.Class
 import Control.Monad.Trans.Except
 import Control.Monad.Trans.Reader
@@ -21,11 +22,12 @@ main = scotty 3000 $ do
     -- ActionT . lift . lift . lift $ putStrLn "hello"
     -- lift $ putStrLn "hello"
     -- liftM is the same as fmap
-    (ActionT
-     . (ExceptT . liftM Right)
-     . liftReaderT
-     . \m -> StateT (\s -> do
-                        a <- m
-                        return (a, s))
-     ) (putStrLn "hello")
+    -- (ActionT
+    --  . (ExceptT . liftM Right)
+    --  . liftReaderT
+    --  . \m -> StateT (\s -> do
+    --                     a <- m
+    --                     return (a, s))
+    --  ) (putStrLn "hello")
+    liftIO $ putStrLn "hello"
     html $ mconcat ["<h1>Scotty, ", beam, " me up!</h1>"]
